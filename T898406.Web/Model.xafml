@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <SchemaModules>
+    <SchemaModule Name="SystemAspNetModule" Version="20.1.4.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="20.1.4.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="Test_ListView" MasterDetailMode="ListViewAndDetailView" />
+    <ListView Id="Test_Ones_ListView" AllowEdit="True" InlineEditMode="EditForm" />
+  </Views>
+</Application>
