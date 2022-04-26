@@ -54,6 +54,7 @@ namespace T898406.Module.Web.Controllers
                     };
                     listEditor.Grid.ClientSideEvents.BatchEditStartEditing = "OnBatchEditStartEditing";
                     listEditor.Grid.ClientSideEvents.Init = "OnInit";
+                    //listEditor.Grid.ClientSideEvents.BatchEditEndEditing = "OnBatchEditEndEditing";
                     listEditor.Grid.ClientSideEvents.EndCallback = "OnEndCallback";
                     string script1 = CallbackManager.GetScript(handlerId, "lastRow = s.GetTopVisibleIndex() + s.GetVisibleRowsOnPage() - 1;");
                    // ClientSideEventsHelper.AssignClientHandlerSafe(Grid, "Init", "OnInit", "HideEditActionController");

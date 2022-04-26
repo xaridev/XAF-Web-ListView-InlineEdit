@@ -27,6 +27,7 @@
             //timerHandle = setTimeout(function () {
             //    s.UpdateEdit();
             //}, 1000);
+            //init = 0;
             console.log(currentRow);
             console.log(lastRow);
             if (currentRow == lastRow) {
@@ -57,10 +58,10 @@
              if (init == 0) {
                  s.AddNewRow();
                  // s.UpdateEdit();
-                 lastRow = s.GetTopVisibleIndex() + s.GetVisibleRowsOnPage() - 1;
+                 
                  init = 1;
              }
-             
+             lastRow = s.GetTopVisibleIndex() + s.GetVisibleRowsOnPage() - 1;
          }
          function OnEndCallback(s, e) {
              init = 0;
