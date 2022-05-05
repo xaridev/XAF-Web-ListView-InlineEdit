@@ -38,34 +38,40 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v20.1">
+    <Reference Include="DevExpress.Data.v21.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Objects.v20.1">
+    <Reference Include="DevExpress.ExpressApp.Objects.v21.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.v20.1">
+    <Reference Include="DevExpress.ExpressApp.v21.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Web.v20.1">
+    <Reference Include="DevExpress.ExpressApp.Web.v21.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Xpo.v20.1">
+    <Reference Include="DevExpress.ExpressApp.Xpo.v21.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Persistent.Base.v20.1">
+    <Reference Include="DevExpress.Persistent.Base.v21.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Persistent.BaseImpl.v20.1">
+    <Reference Include="DevExpress.Persistent.BaseImpl.Xpo.v21.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Printing.v20.1.Core">
+    <Reference Include="DevExpress.Printing.v21.2.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Web.v20.1">
+    <Reference Include="DevExpress.Office.v21.2.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v20.1">
+    <Reference Include="DevExpress.RichEdit.v21.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Web.v21.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v21.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="mscorlib">
@@ -83,11 +89,19 @@
     <Reference Include="System.Data">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\HideEditActionController.cs" />
+    <Compile Include="Controllers\ViewController1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ViewController1.Designer.cs">
+      <DependentUpon>ViewController1.cs</DependentUpon>
+    </Compile>
     <Compile Include="WebModule.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -98,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Controllers\ReadMe.txt" />
@@ -115,6 +130,12 @@
       <Name>T898406.Module</Name>
       <Private>True</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UnusableNodes.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

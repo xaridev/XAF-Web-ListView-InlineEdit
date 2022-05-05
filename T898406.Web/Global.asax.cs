@@ -6,7 +6,7 @@ using System.Web.Routing;
 
 using DevExpress.ExpressApp;
 using DevExpress.Persistent.Base;
-using DevExpress.Persistent.BaseImpl;
+
 using DevExpress.ExpressApp.Security;
 using DevExpress.ExpressApp.Web;
 using DevExpress.Web;
@@ -17,7 +17,6 @@ namespace T898406.Web {
             InitializeComponent();
         }
         protected void Application_Start(Object sender, EventArgs e) {
-            DevExpress.ExpressApp.FrameworkSettings.DefaultSettingsCompatibilityMode = DevExpress.ExpressApp.FrameworkSettingsCompatibilityMode.v20_1;
             RouteTable.Routes.RegisterXafRoutes();
             ASPxWebControl.CallbackError += new EventHandler(Application_Error);
 #if EASYTEST
