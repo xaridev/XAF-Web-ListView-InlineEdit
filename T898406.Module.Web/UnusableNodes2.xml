@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <ListView Id="DomainObject2_ListView_Dm4">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Type" PropertyName="Type" Index="2" />
+        <ColumnInfo Id="NAme" PropertyName="NAme" Index="1" />
+        <ColumnInfo Id="PropertyName" PropertyName="PropertyName" SortIndex="0" SortOrder="Ascending" Index="0" />
+      </Columns>
+    </ListView>
+    <ListView Id="DomainObject2_ListView_Dm2">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Type" PropertyName="Type" Index="2" />
+        <ColumnInfo Id="NAme" PropertyName="NAme" Index="1" />
+        <ColumnInfo Id="PropertyName" PropertyName="PropertyName" SortIndex="0" SortOrder="Ascending" Index="0" />
+      </Columns>
+    </ListView>
+  </Views>
+</Application>

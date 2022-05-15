@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <ListView Id="DomainObject2_ListView_Dm4">
+      <Columns Id="Columns">
+        <ColumnInfo Id="DomainObject1.Type" PropertyName="DomainObject1.Type" Index="0" />
+      </Columns>
+    </ListView>
+    <ListView Id="DomainObject2_ListView_Dm2">
+      <Columns Id="Columns">
+        <ColumnInfo Id="DomainObject1.Type" PropertyName="DomainObject1.Type" Index="0" />
+      </Columns>
+    </ListView>
+    <DetailView Id="DomainObject1_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="DomainObject1">
+              <LayoutItem Id="Type" RelativeSize="35.416666666666664" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

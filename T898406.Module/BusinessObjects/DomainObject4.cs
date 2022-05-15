@@ -20,11 +20,11 @@ namespace T898406.Module.BusinessObjects
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
     //[Persistent("DatabaseTableName")]
     // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
-    public class DomainObject1 : BaseObject
+    public class DomainObject4 : DomainObject3
     { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
         // Use CodeRush to create XPO classes and properties with a few keystrokes.
         // https://docs.devexpress.com/CodeRushForRoslyn/118557
-        public DomainObject1(Session session)
+        public DomainObject4(Session session)
             : base(session)
         {
         }
@@ -34,33 +34,13 @@ namespace T898406.Module.BusinessObjects
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
 
-       
-        string nAme;
-        string propertyName;
+        string name;
 
         [Size(SizeAttribute.DefaultStringMappingFieldSize)]
-        public string PropertyName
+        public string Name
         {
-            get => propertyName;
-            set => SetPropertyValue(nameof(PropertyName), ref propertyName, value);
-        }
-
-        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
-        public string NAme
-        {
-            get => nAme;
-            set => SetPropertyValue(nameof(NAme), ref nAme, value);
-        }
-
-        [Association("DomainObject1-DomainObject3s")]
-        public XPCollection<DomainObject3> Details
-        {
-            get
-            {
-                return GetCollection<DomainObject3>(nameof(Details));
-            }
+            get => name;
+            set => SetPropertyValue(nameof(Name), ref name, value);
         }
     }
-
-    
 }

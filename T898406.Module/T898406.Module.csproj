@@ -86,6 +86,7 @@
     <Compile Include="BusinessObjects\DomainObject1.cs" />
     <Compile Include="BusinessObjects\DomainObject2.cs" />
     <Compile Include="BusinessObjects\DomainObject3.cs" />
+    <Compile Include="BusinessObjects\DomainObject4.cs" />
     <Compile Include="DatabaseUpdate\Updater.cs" />
     <Compile Include="Module.cs">
       <SubType>Component</SubType>

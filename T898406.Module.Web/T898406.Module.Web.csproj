@@ -95,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CriteriaPatcherBase.cs" />
     <Compile Include="Controllers\HideEditActionController.cs" />
     <Compile Include="Controllers\ViewController1.cs">
       <SubType>Component</SubType>
@@ -133,6 +134,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="UnusableNodes.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UnusableNodes1.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UnusableNodes2.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UnusableNodes3.xml">
       <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
       <SubType>Designer</SubType>
     </None>

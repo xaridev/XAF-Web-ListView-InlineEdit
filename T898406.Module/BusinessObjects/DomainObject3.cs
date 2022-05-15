@@ -20,7 +20,13 @@ namespace T898406.Module.BusinessObjects
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
     //[Persistent("DatabaseTableName")]
     // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
-    public class DomainObject3 : BaseObject
+
+    public enum MyEnum
+    {
+        Dm1 = 0,
+        Dm2 = 1
+    }
+    public abstract class DomainObject3 : BaseObject
     { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
         // Use CodeRush to create XPO classes and properties with a few keystrokes.
         // https://docs.devexpress.com/CodeRushForRoslyn/118557
@@ -28,12 +34,8 @@ namespace T898406.Module.BusinessObjects
             : base(session)
         {
         }
-        public override void AfterConstruction()
-        {
-            base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
-        }
-
+        MyEnum type;
+        DomainObject1 domainObject1;
         string name3;
 
         [Size(SizeAttribute.DefaultStringMappingFieldSize)]
@@ -41,6 +43,19 @@ namespace T898406.Module.BusinessObjects
         {
             get => name3;
             set => SetPropertyValue(nameof(Name3), ref name3, value);
+        }
+
+        public MyEnum Type
+        {
+            get => type;
+            set => SetPropertyValue(nameof(Type), ref type, value);
+        }
+
+        [Association("DomainObject1-DomainObject3s")]
+        public DomainObject1 DomainObject1
+        {
+            get => domainObject1;
+            set => SetPropertyValue(nameof(DomainObject1), ref domainObject1, value);
         }
     }
 }

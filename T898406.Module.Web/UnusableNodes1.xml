@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <ListView Id="DomainObject1_Ones_ListView" InlineEditMode="Batch" AllowEdit="True" NewItemRowPosition="Bottom" ClassName="T898406.Module.BusinessObjects.DomainObject2" DetailViewID="DomainObject2_DetailView" MasterDetailView="DomainObject2_DetailView" />
+  </Views>
+</Application>

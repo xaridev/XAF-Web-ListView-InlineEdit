@@ -14,36 +14,41 @@
          var currentRow;
          var lastRow;
          var init = 0;
-        function OnBatchEditStartEditing(s, e) {
-            /*clearTimeout(timerHandle);*/
-            console.log(e.visibleIndex);
-            currentRow = e.visibleIndex;
-           /* grid.UpdateEdit();*/
-            if (e.visibleIndex < 0 && !grid.batchEditApi.HasChanges(e.visibleIndex - 1)) {
-                lastRow = e.visibleIndex;
-            }
-    	}	
-        function OnBatchEditEndEditing(s, e) {
-            //timerHandle = setTimeout(function () {
-            //    s.UpdateEdit();
-            //}, 1000);
-            //init = 0;
-            console.log(currentRow);
-            console.log(lastRow);
-            if (currentRow == lastRow) {
-                grid.AddNewRow();
-                grid.UpdateEdit();
-            }
+         var comm;
+         function OnBeginCallback(s, e) {
+             comm = e.command;
          }
-         
+         function OnBatchEditStartEditing(s, e) {
+             /*clearTimeout(timerHandle);*/
+             // console.log(e.visibleIndex);
+             currentRow = e.visibleIndex;
+             /* grid.UpdateEdit();*/
+             if (e.visibleIndex < 0 && !grid.batchEditApi.HasChanges(e.visibleIndex - 1)) {
+                 lastRow = e.visibleIndex;
+             }
+         }
+         function OnBatchEditEndEditing(s, e) {
+             //timerHandle = setTimeout(function () {
+             //    s.UpdateEdit();
+             //}, 1000);
+             //init = 0;
+             console.log(currentRow);
+             console.log(lastRow);
+             if (currentRow == lastRow) {
+                 grid.AddNewRow();
+                 grid.UpdateEdit();
+             }
+         }
+
          function OnKeyDown(s, e) {
+
              if ((e.htmlEvent.keyCode == 9 || e.htmlEvent.keyCode == 13) && (currentRow == lastRow)) { //tab and last row
-                 //console.log(currentRow);
+                 console.log('yes');
                  //console.log(lastRow);
                  grid.AddNewRow();
-                // grid.UpdateEdit();
-                 //ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);
-                 
+                 // grid.UpdateEdit();
+                 ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);
+
              }
          }
          //function OnBatchStartEditing(s, e) {
@@ -54,13 +59,14 @@
          //    }
          //}
          function OnInit(s, e) {
-             console.log(e);
+             console.log(init);
              if (init == 0) {
+                 console.log('init');
                  s.AddNewRow();
                  // s.UpdateEdit();
-                 
                  init = 1;
              }
+             //s.AddNewRow();
              lastRow = s.GetTopVisibleIndex() + s.GetVisibleRowsOnPage() - 1;
          }
          function OnEndCallback(s, e) {

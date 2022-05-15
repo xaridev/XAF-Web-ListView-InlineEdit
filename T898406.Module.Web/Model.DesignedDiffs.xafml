@@ -11,7 +11,58 @@
     </PropertyEditor>
   </ViewItems>
   <Views>
+    <ListView Id="DomainObject1_Details_ListView" AllowEdit="False" InlineEditMode="Inline" NewItemRowPosition="None" />
+    <DetailView Id="DomainObject1_DetailView">
+      <Items>
+        <PropertyEditor Id="Details2" PropertyName="Details" Caption="Details 2" View="DomainObject2_ListView_Dm2" IsNewNode="True" />
+        <PropertyEditor Id="Details4" PropertyName="Details" View="DomainObject2_ListView_Dm4" Caption="Details 4" IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="13.186813186813186">
+            <LayoutGroup Id="DomainObject1" RelativeSize="100">
+              <LayoutItem Id="PropertyName" RelativeSize="37.5" />
+              <LayoutItem Id="NAme" RelativeSize="27.083333333333332" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Details_Group" Caption="Details" Direction="Vertical" RelativeSize="86.813186813186817">
+            <TabbedGroup Id="Item2" CaptionLocation="Top" Index="0" RelativeSize="100" IsNewNode="True">
+              <LayoutGroup Id="Item1" ShowCaption="True" CaptionLocation="Top" Index="0" RelativeSize="100" Caption="Combined" IsNewNode="True">
+                <LayoutItem Id="Details" ViewItem="Details" Index="0" RelativeSize="100" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Item3" ShowCaption="True" CaptionLocation="Top" Direction="Vertical" Index="1" Caption="Dm2" RelativeSize="100" IsNewNode="True">
+                <LayoutItem Id="Details2" ViewItem="Details2" Index="0" RelativeSize="100" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Item4" ShowCaption="True" CaptionLocation="Top" Direction="Vertical" Index="2" Caption="Dm4" RelativeSize="100" IsNewNode="True">
+                <LayoutItem Id="Details4" ViewItem="Details4" Index="0" RelativeSize="100" IsNewNode="True" />
+              </LayoutGroup>
+            </TabbedGroup>
+            <LayoutItem Id="Details" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <ListView Id="DomainObject1_ListView" InlineEditMode="Inline" AllowEdit="False" DataAccessMode="Client" />
-    <ListView Id="DomainObject1_Ones_ListView" InlineEditMode="Batch" AllowEdit="True" NewItemRowPosition="Bottom" />
+    <ListView Id="DomainObject2_ListView_Dm2" ClassName="T898406.Module.BusinessObjects.DomainObject3" DataAccessMode="Client" DetailRowView="DomainObject3_DetailView" MasterDetailView="DomainObject3_DetailView" DetailViewID="DomainObject3_DetailView" InlineEditMode="Batch" AllowEdit="True" NewItemRowPosition="Bottom" Caption="Domain Object 2" Criteria="[Type] = ##Enum#T898406.Module.BusinessObjects.MyEnum,Dm2#" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="DomainObject1" PropertyName="DomainObject1" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Type" PropertyName="Type" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="Name3" PropertyName="Name3" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="DomainObject1.NAme" PropertyName="DomainObject1.NAme" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="DomainObject1.PropertyName" PropertyName="DomainObject1.PropertyName" Index="3" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="DomainObject2_ListView_Dm4" ClassName="T898406.Module.BusinessObjects.DomainObject3" DataAccessMode="Client" InlineEditMode="Batch" AllowEdit="True" NewItemRowPosition="Bottom" Caption="Domain Object 4" Criteria="[Type] = ##Enum#T898406.Module.BusinessObjects.MyEnum,Dm1#" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="DomainObject1" PropertyName="DomainObject1" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="DomainObject1.Oid" PropertyName="DomainObject1.Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Type" PropertyName="Type" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="Name3" PropertyName="Name3" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="DomainObject1.NAme" PropertyName="DomainObject1.NAme" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="DomainObject1.PropertyName" PropertyName="DomainObject1.PropertyName" Index="3" IsNewNode="True" />
+      </Columns>
+    </ListView>
   </Views>
 </Application>

@@ -20,7 +20,7 @@ namespace T898406.Module.BusinessObjects
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
     //[Persistent("DatabaseTableName")]
     // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
-    public class DomainObject2 : BaseObject
+    public class DomainObject2 : DomainObject3
     { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
         // Use CodeRush to create XPO classes and properties with a few keystrokes.
         // https://docs.devexpress.com/CodeRushForRoslyn/118557
@@ -28,15 +28,6 @@ namespace T898406.Module.BusinessObjects
             : base(session)
         {
         }
-        public override void AfterConstruction()
-        {
-            base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
-        }
-        //private string _PersistentProperty;
-
-        DomainObject3 dM3;
-        DomainObject1 dm1;
         string propertyName;
         string lastName;
         string name;
@@ -60,13 +51,6 @@ namespace T898406.Module.BusinessObjects
         {
             get => propertyName;
             set => SetPropertyValue(nameof(PropertyName), ref propertyName, value);
-        }
-       
-        [Association("DomainObject1-DomainObject2")]
-        public DomainObject1 Dm1
-        {
-            get => dm1;
-            set => SetPropertyValue(nameof(Dm1), ref dm1, value);
         }
     }
 }

@@ -16,19 +16,18 @@ namespace T898406.Module.Web.Controllers
     {
         ListViewController listViewController;
         ASPxGridListEditor listEditor;
+        ASPxGridView Grid;
         readonly string handlerId;
 
         public HideEditActionController()
         {
-            TargetViewId = "DomainObject1_Ones_ListView";
+            TargetViewId = "DomainObject2_ListView_Dm4;DomainObject2_ListView_Dm2";
             handlerId = "HideEditActionController" + GetHashCode();
         }
         protected XafCallbackManager CallbackManager
         {
             get { return ((ICallbackManagerHolder)WebWindow.CurrentRequestPage).CallbackManager; }
         }
-
-
         protected override void OnViewControlsCreated()
         {
             
@@ -42,27 +41,36 @@ namespace T898406.Module.Web.Controllers
                 {
                     
                     listEditor.Grid.Settings.ShowStatusBar = DevExpress.Web.GridViewStatusBarMode.Hidden;
-                    ASPxGridView Grid = listEditor.Control as ASPxGridView;
+                    Grid = listEditor.Control as ASPxGridView;
+                    //Grid.SettingsEditing.BatchEditSettings.StartEditAction = GridViewBatchStartEditAction.FocusedCellClick;
+                    //Grid.SettingsEditing.BatchEditSettings.EditMode = GridViewBatchEditMode.Cell;
+                    //Grid.SettingsEditing.Mode = GridViewEditingMode.Batch;
+                    //Grid.SubstituteFilter += Grid_SubstituteFilter;
                     Grid.CommandButtonInitialize += Grid_CommandButtonInitialize;
                     Grid.ClientInstanceName = "grid";
+                    Grid.Settings.ShowFilterRow = true;
+                    //Grid.AfterPerformCallback += Grid_AfterPerformCallback;
+                    //Grid.ClientSideEvents.BeginCallback = "OnBeginCallback";
                     Grid.CellEditorInitialize += (s, e) => {
-                        if (e.Column.FieldName == "PropertyName")
+                        if (e.Column.FieldName.Contains("PropertyName"))
                         {
                             ASPxEditBase editor = e.Editor as ASPxEditBase;
                             editor.SetClientSideEventHandler("KeyDown", "OnKeyDown");
                         }
                     };
-                    listEditor.Grid.ClientSideEvents.BatchEditStartEditing = "OnBatchEditStartEditing";
-                    listEditor.Grid.ClientSideEvents.Init = "OnInit";
+                    Grid.ClientSideEvents.BatchEditStartEditing = "OnBatchEditStartEditing";
+                    //listEditor.Grid.ClientSideEvents.Init = "OnInit";
+                    
                     //listEditor.Grid.ClientSideEvents.BatchEditEndEditing = "OnBatchEditEndEditing";
-                    listEditor.Grid.ClientSideEvents.EndCallback = "OnEndCallback";
-                    string script1 = CallbackManager.GetScript(handlerId, "lastRow = s.GetTopVisibleIndex() + s.GetVisibleRowsOnPage() - 1;");
+                    //DomainObject1 parent = ((NestedFrame)Frame).ViewItem.CurrentObject as DomainObject1;
+                    Grid.ClientSideEvents.EndCallback = "OnEndCallback";
+                    //string script1 = CallbackManager.GetScript(handlerId, "lastRow = s.GetTopVisibleIndex() + s.GetVisibleRowsOnPage() - 1;");
                    // ClientSideEventsHelper.AssignClientHandlerSafe(Grid, "Init", "OnInit", "HideEditActionController");
                     //listEditor.Grid.ClientSideEvents.BatchEditEndEditing = "OnBatchEditEndEditing";
                     //listEditor.Grid.SetClientSideEventHandler("KeyDown", "OnKeyDown");
                     //listEditor.Grid.ClientSideEvents.BatchEditEndEditing = "OnBatchEditEndEditing";
                     //listEditor.Grid.ClientSideEvents.Init = "function(s, e) { s.timerHandle = -1; s.AddNewRow(); s.UpdateEdit();}";
-                    listEditor.CommitChanges += ListEditor_CommitChanges;
+                    //listEditor.CommitChanges += ListEditor_CommitChanges;
                     //listEditor.DataSourceChanged += ListEditor_DataSourceChanged;
                     //listEditor.Grid.ClientSideEvents.BatchEditStartEditing = listEditor.Grid.ClientSideEvents.BatchEditStartEditing.Replace("}", " clearTimeout(s.timerHandle); } ");
                     //listEditor.Grid.ClientSideEvents.BatchEditEndEditing = "function(s, e) { s.timerHandle = setTimeout(function() { s.UpdateEdit(); }, 1000); }";
@@ -73,6 +81,7 @@ namespace T898406.Module.Web.Controllers
                 
                 Frame.GetController<WebNewObjectViewController>().NewObjectAction
                    .SetClientScript("grid.batchEditApi.AddNewRow();", false);
+                Frame.GetController<WebNewObjectViewController>().ObjectCreating += HideEditActionController_ObjectCreating;
                 //Grid.ClientSideEvents.FocusedCellChanging "e.cellInfo.column.name + ';' + e.RowIndex"
                 //Grid.ClientSideEvents.RowClick = @"function(s, e) { grid.batchEditApi.AddNewRow();}";
                 //Add new row
@@ -84,14 +93,33 @@ namespace T898406.Module.Web.Controllers
                 //        }
                 //    }";
                 //string script = CallbackManager.GetScript(handlerId, "grid.batchEditApi.AddNewRow();");
-                string script = CallbackManager.GetScript(handlerId, "e.cellInfo.column.name + ';' + e.cellInfo.column.fieldName + ';' + e.cellInfo.rowVisibleIndex");
+               // string script = CallbackManager.GetScript(handlerId, "e.command + ';' ");
                 // string script = CallbackManager.GetScript(handlerId, "s.UpdateEdit() + ';' s.AddNewRow() + ';'");
-                //ClientSideEventsHelper.AssignClientHandlerSafe(Grid, "RowClick", "function(s, e) {" + script + "}", "HideEditActionController");
+                //ClientSideEventsHelper.AssignClientHandlerSafe(Grid, "BeginCallback", "function(s, e) {" + script + "}", "HideEditActionController");
             }
                 
         }
 
-        
+        private void HideEditActionController_ObjectCreating(object sender, DevExpress.ExpressApp.SystemModule.ObjectCreatingEventArgs e)
+        {
+            
+        }
+
+        private void Grid_SubstituteFilter(object sender, DevExpress.Data.SubstituteFilterEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(Grid.FilterExpression))
+            {
+
+            }
+        }
+
+        private void Grid_AfterPerformCallback(object sender, ASPxGridViewAfterPerformCallbackEventArgs e)
+        {
+            if (e.CallbackName == "APPLYFILTER" && string.IsNullOrWhiteSpace(Grid.FilterExpression))
+                Grid.JSProperties["cpFilter"] = "clear";
+            else
+                Grid.JSProperties["cpFilter"] = "";
+        }
 
         private void ListEditor_CommitChanges(object sender, System.EventArgs e)
         {
