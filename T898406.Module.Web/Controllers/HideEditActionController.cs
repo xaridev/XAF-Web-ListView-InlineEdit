@@ -71,8 +71,9 @@ namespace T898406.Module.Web.Controllers
 
                 //Grid.ClientInstanceName = "grid";
                 
-                Frame.GetController<WebNewObjectViewController>().NewObjectAction
-                   .SetClientScript("grid.batchEditApi.AddNewRow();", false);
+                //Frame.GetController<WebNewObjectViewController>().NewObjectAction
+                //   .SetClientScript("grid.batchEditApi.AddNewRow();", false);
+                Frame.GetController<WebNewObjectViewController>().ObjectCreated += HideEditActionController_ObjectCreated;               
                 //Grid.ClientSideEvents.FocusedCellChanging "e.cellInfo.column.name + ';' + e.RowIndex"
                 //Grid.ClientSideEvents.RowClick = @"function(s, e) { grid.batchEditApi.AddNewRow();}";
                 //Add new row
@@ -91,7 +92,14 @@ namespace T898406.Module.Web.Controllers
                 
         }
 
-        
+        private void HideEditActionController_ObjectCreated(object sender, DevExpress.ExpressApp.SystemModule.ObjectCreatedEventArgs e)
+        {
+        }
+
+        private void HideEditActionController_ObjectCreating(object sender, DevExpress.ExpressApp.SystemModule.ObjectCreatingEventArgs e)
+        {
+
+        }
 
         private void ListEditor_CommitChanges(object sender, System.EventArgs e)
         {
