@@ -18,6 +18,8 @@
             /*clearTimeout(timerHandle);*/
             console.log(e.visibleIndex);
             currentRow = e.visibleIndex;
+            
+            console.log("Start Editing: " + init);
            /* grid.UpdateEdit();*/
             if (e.visibleIndex < 0 && !grid.batchEditApi.HasChanges(e.visibleIndex - 1)) {
                 lastRow = e.visibleIndex;
@@ -28,8 +30,8 @@
             //    s.UpdateEdit();
             //}, 1000);
             //init = 0;
-            console.log(currentRow);
-            console.log(lastRow);
+            //console.log(currentRow);
+            //console.log(lastRow);
             if (currentRow == lastRow) {
                 grid.AddNewRow();
                 grid.UpdateEdit();
@@ -54,13 +56,13 @@
          //    }
          //}
          function OnInit(s, e) {
-             console.log(e);
-             if (init == 0) {
+             //console.log("OnInit: " + init);
+            /* if (init == 0) {*/
                  s.AddNewRow();
-                 // s.UpdateEdit();
+                 //s.UpdateEdit();
                  
-                 init = 1;
-             }
+             //    init = 1;
+             //}
              lastRow = s.GetTopVisibleIndex() + s.GetVisibleRowsOnPage() - 1;
          }
          function OnEndCallback(s, e) {
